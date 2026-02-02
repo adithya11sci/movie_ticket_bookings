@@ -1,0 +1,50 @@
+/* Global App Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f0f23;
+    color: #fff;
+}
+
+.app {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+}
+
+main {
+    min-height: calc(100vh - 70px);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* loading and error pages */
+.loading-page, .error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e94560;
+    border-radius: 5px;
+}
+}
