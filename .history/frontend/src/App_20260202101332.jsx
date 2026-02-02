@@ -5,7 +5,6 @@ import { AuthProvider } from './context/AuthContext';
 
 // Components
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 
 // Pages
@@ -54,7 +53,6 @@ function App() {
                             <Route path="/admin/users" element={<ManageUsers />} />
                         </Routes>
                     </main>
-                    <Footer />
                     <Chatbot />
                     <ToastContainer
                         position="top-right"

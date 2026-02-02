@@ -1,0 +1,188 @@
+.movie-details {
+    min-height: 100vh;
+}
+
+.loading-page, .error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.movie-banner {
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 2rem;
+}
+
+.banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.movie-poster-large {
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.movie-info-details h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.movie-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+.movie-meta-info .icon {
+    color: #e94560;
+    margin-right: 0.3rem;
+}
+
+.genres {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.genre-tag {
+    background: #e94560;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.description {
+    color: #aaa;
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+/* showtimes section */
+.showtimes-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.showtimes-section h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.date-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.date-btn {
+    background: #1a1a2e;
+    color: #fff;
+    border: 1px solid #2d3436;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.date-btn:hover, .date-btn.active {
+    background: #e94560;
+    border-color: #e94560;
+}
+
+.theaters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.theater-card {
+    background: #1a1a2e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.theater-info h3 {
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.theater-info p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.showtime-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.time-btn {
+    background: transparent;
+    border: 1px solid #00b894;
+    color: #00b894;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.time-btn:hover {
+    background: #00b894;
+    color: #fff;
+}
+
+.time-btn .price {
+    font-size: 0.75rem;
+    margin-top: 0.2rem;
+}
+
+.no-showtimes {
+    color: #888;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .banner-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .movie-poster-large {
+        width: 200px;
+    }
+    
+    .movie-meta-info {
+        justify-content: center;
+    }
+    
+    .genres {
+        justify-content: center;
+    }
+}

@@ -5,12 +5,10 @@ import { AuthProvider } from './context/AuthContext';
 
 // Components
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 
 // Pages
 import Home from './pages/Home';
-import Movies from './pages/Movies';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MovieDetails from './pages/MovieDetails';
@@ -40,7 +38,7 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/movie/:id" element={<MovieDetails />} />
-                            <Route path="/movies" element={<Movies />} />
+                            <Route path="/movies" element={<Home />} />
                             <Route path="/booking/:showtimeId" element={<BookingPage />} />
                             <Route path="/payment/:bookingId" element={<PaymentPage />} />
                             <Route path="/my-bookings" element={<MyBookings />} />
@@ -54,7 +52,6 @@ function App() {
                             <Route path="/admin/users" element={<ManageUsers />} />
                         </Routes>
                     </main>
-                    <Footer />
                     <Chatbot />
                     <ToastContainer
                         position="top-right"

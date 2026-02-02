@@ -54,7 +54,6 @@ function App() {
                             <Route path="/admin/users" element={<ManageUsers />} />
                         </Routes>
                     </main>
-                    <Footer />
                     <Chatbot />
                     <ToastContainer
                         position="top-right"
