@@ -191,10 +191,6 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                     <span>Sold</span>
                 </div>
                 <div className="bms-legend-item">
-                    <span className="bms-legend-box user-booked"></span>
-                    <span>Your Booking</span>
-                </div>
-                <div className="bms-legend-item">
                     <span className="bms-legend-box available"></span>
                     <span>Available</span>
                 </div>

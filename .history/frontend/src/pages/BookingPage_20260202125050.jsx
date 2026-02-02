@@ -192,8 +192,6 @@ const BookingPage = () => {
                 bookedSeats={showtime.bookedSeats || []}
                 selectedSeats={selectedSeats}
                 onSeatSelect={setSelectedSeats}
-                userBookedSeats={userBookedSeats}
-                lockedSeats={lockedSeats}
                 prices={{
                     vip: showtime.price?.vip || 480,
                     premium: showtime.price?.premium || 280,

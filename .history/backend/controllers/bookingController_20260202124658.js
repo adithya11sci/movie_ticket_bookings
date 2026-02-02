@@ -383,74 +383,11 @@ const updatePaymentStatus = async (req, res) => {
     }
 };
 
-// @desc    Get user's bookings for a specific showtime (for seat display)
-// @route   GET /api/bookings/showtime/:showTimeId/my-seats
-const getMySeatsForShowtime = async (req, res) => {
-    try {
-        const { showTimeId } = req.params;
-        const userId = req.user._id;
-        
-        // Find user's bookings for this showtime
-        const bookings = await Booking.find({
-            user: userId,
-            showTime: showTimeId,
-            bookingStatus: { $ne: 'cancelled' }
-        });
-        
-        // Extract all seat numbers
-        const mySeats = [];
-        bookings.forEach(booking => {
-            booking.seats.forEach(seat => {
-                mySeats.push(seat.seatNumber);
-            });
-        });
-        
-        res.json({ mySeats });
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to get user seats' });
-    }
-};
-
-// @desc    Get seat status for a showtime (all locked/booked seats)
-// @route   GET /api/bookings/showtime/:showTimeId/seat-status
-const getSeatStatus = async (req, res) => {
-    try {
-        const { showTimeId } = req.params;
-        
-        const showtime = await ShowTime.findById(showTimeId);
-        
-        if (!showtime) {
-            return res.status(404).json({ message: 'Showtime not found' });
-        }
-        
-        // Clean up expired locks first
-        const now = new Date();
-        showtime.seatStatus = showtime.seatStatus.filter(seat => {
-            if (seat.status === 'locked' && seat.lockExpiry && seat.lockExpiry < now) {
-                return false; // Remove expired locks
-            }
-            return true;
-        });
-        await showtime.save();
-        
-        res.json({
-            bookedSeats: showtime.bookedSeats,
-            seatStatus: showtime.seatStatus
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to get seat status' });
-    }
-};
-
 module.exports = {
     createBooking,
     getMyBookings,
     getBookingById,
     cancelBooking,
     getAllBookings,
-    updatePaymentStatus,
-    lockSeats,
-    releaseSeats,
-    getMySeatsForShowtime,
-    getSeatStatus
+    updatePaymentStatus
 };
