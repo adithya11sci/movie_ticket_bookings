@@ -1,0 +1,122 @@
+/* BookingPage.css - Professional Clean Design */
+
+.booking-page {
+    min-height: 100vh;
+    padding: 2rem;
+    background: var(--bg-light);
+}
+
+.booking-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.booking-movie-info {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.booking-movie-info img {
+    width: 100px;
+    border-radius: 6px;
+}
+
+.booking-movie-info .info h2 {
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.booking-movie-info .info p {
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.showtime-info {
+    color: var(--primary) !important;
+    font-weight: 600;
+}
+
+/* Booking Summary */
+.booking-summary {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.summary-details p {
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.summary-details span {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.summary-details .total {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-top: 0.5rem;
+}
+
+.summary-details .total span {
+    color: var(--accent-green);
+}
+
+.proceed-btn {
+    background: var(--primary);
+    color: var(--text-light);
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.proceed-btn:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.proceed-btn:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .booking-page {
+        padding: 1rem;
+    }
+    
+    .booking-movie-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .booking-summary {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .proceed-btn {
+        width: 100%;
+    }
+}

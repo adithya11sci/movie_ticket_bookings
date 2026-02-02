@@ -53,13 +53,14 @@ const BookingPage = () => {
         if (!showtime) return 0;
         return selectedSeats.reduce((total, seat) => {
             // Different pricing based on seat section
-            const row = seat[0];
-            if (row === 'N' || row === 'M') {
+            if (seat.startsWith('N') || seat.startsWith('M')) {
                 return total + (showtime.price?.vip || 480);
-            } else if (['L', 'K', 'J', 'I', 'H', 'G'].includes(row)) {
+            } else if (seat.startsWith('L') || seat.startsWith('K') || seat.startsWith('J') || 
+                       seat.startsWith('I') || seat.startsWith('H') || seat.startsWith('G') || 
+                       seat.startsWith('F') || seat.startsWith('E')) {
                 return total + (showtime.price?.premium || 280);
             } else {
-                return total + (showtime.price?.regular || 180);
+                return total + (showtime.price?.regular || 260);
             }
         }, 0);
     };
@@ -73,16 +74,11 @@ const BookingPage = () => {
         try {
             const bookingData = {
                 showTimeId: showtimeId,
-                seats: selectedSeats.map(seat => {
-                    const row = seat[0];
-                    let seatType = 'regular';
-                    if (row === 'N' || row === 'M') {
-                        seatType = 'vip';
-                    } else if (['L', 'K', 'J', 'I', 'H', 'G'].includes(row)) {
-                        seatType = 'premium';
-                    }
-                    return { seatNumber: seat, seatType };
-                }),
+                seats: selectedSeats.map(seat => ({
+                    seatNumber: seat,
+                    seatType: seat.startsWith('N') || seat.startsWith('M') ? 'vip' : 
+                              seat.startsWith('E') || seat.startsWith('D') || seat.startsWith('C') || seat.startsWith('B') ? 'regular' : 'premium'
+                })),
                 totalAmount: calculateTotal()
             };
 

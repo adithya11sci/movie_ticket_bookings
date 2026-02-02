@@ -3,22 +3,6 @@ import './SeatSelector.css';
 
 const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSelect, prices }) => {
     
-    // Simulate some booked seats for demo if none are provided
-    const demoBookedSeats = [
-        'K7', 'K8', 'K9', 'K10',  // Some center seats in K row
-        'J6', 'J7', 'J8',         // Some in J row
-        'L5', 'L6',               // Some in L row
-        'H9', 'H10', 'H11',       // Some in H row
-        'F3', 'F4', 'F5',         // Some in F row
-        'D8', 'D9',               // Some in D row
-        'B10', 'B11', 'B12',      // Some in B row
-        'N5', 'N6',               // VIP seats
-        'M3', 'M4'                // More VIP
-    ];
-    
-    // Use actual booked seats if available, otherwise use demo
-    const actualBookedSeats = bookedSeats.length > 0 ? bookedSeats : demoBookedSeats;
-    
     // Define seat sections - BookMyShow style
     const sections = [
         { 
@@ -59,7 +43,7 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     ];
 
     const handleSeatClick = (seatId) => {
-        if (actualBookedSeats.includes(seatId)) return;
+        if (bookedSeats.includes(seatId)) return;
         
         if (selectedSeats.includes(seatId)) {
             onSeatSelect(selectedSeats.filter(s => s !== seatId));
@@ -71,13 +55,12 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     const isBestseller = (seatId) => {
         const row = seatId[0];
         const num = parseInt(seatId.slice(1));
-        // Center seats in middle rows are bestsellers (only if not sold)
-        if (actualBookedSeats.includes(seatId)) return false;
+        // Center seats in middle rows are bestsellers
         return ['J', 'K', 'I', 'H'].includes(row) && num >= 6 && num <= 11;
     };
 
     const getSeatStatus = (seatId) => {
-        if (actualBookedSeats.includes(seatId)) return 'sold';
+        if (bookedSeats.includes(seatId)) return 'sold';
         if (selectedSeats.includes(seatId)) return 'selected';
         if (isBestseller(seatId)) return 'bestseller';
         return 'available';

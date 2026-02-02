@@ -12,6 +12,7 @@ const MovieDetails = () => {
     const [loading, setLoading] = useState(true);
     const [selectedDate, setSelectedDate] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const [showBooking, setShowBooking] = useState(false);
 
     // Generate next 7 days
     const getNextDays = () => {

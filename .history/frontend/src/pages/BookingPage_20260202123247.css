@@ -168,107 +168,43 @@
 }
 
 .proceed-btn {
-    padding: 14px 40px;
+    padding: 1rem 3rem;
     background: #f84464;
     color: #fff;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
 }
 
 .proceed-btn:hover {
-    background: #dc3545;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(248, 68, 100, 0.3);
+    background: #e73555;
+    transform: scale(1.02);
 }
 
-.proceed-btn:active {
-    transform: translateY(0);
-}
-
-/* ============ RESPONSIVE ============ */
+/* Responsive */
 @media (max-width: 768px) {
     .booking-header {
-        padding: 12px 16px;
+        padding: 1rem;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 1rem;
     }
     
     .movie-theater-info h1 {
-        font-size: 14px;
-    }
-    
-    .movie-theater-info p {
-        font-size: 12px;
-    }
-    
-    .tickets-btn {
-        padding: 8px 14px;
-        font-size: 13px;
+        font-size: 1rem;
     }
     
     .showtime-selector {
-        padding: 12px 16px;
-        gap: 8px;
-    }
-    
-    .showtime-selector .time-btn {
-        padding: 8px 16px;
-        font-size: 12px;
+        padding: 1rem;
     }
     
     .booking-bottom-bar {
-        padding: 12px 16px;
+        padding: 1rem;
     }
     
     .proceed-btn {
-        padding: 12px 28px;
-        font-size: 14px;
-    }
-    
-    .selected-info .total {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-left {
-        gap: 10px;
-    }
-    
-    .back-btn {
-        font-size: 16px;
-        padding: 6px;
-    }
-    
-    .movie-theater-info h1 {
-        font-size: 13px;
-    }
-    
-    .movie-theater-info p {
-        font-size: 11px;
-    }
-    
-    .tickets-btn {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-    
-    .proceed-btn {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-    
-    .selected-info .seats {
-        font-size: 11px;
-        max-width: 120px;
-    }
-    
-    .selected-info .total {
-        font-size: 16px;
+        padding: 0.8rem 2rem;
     }
 }

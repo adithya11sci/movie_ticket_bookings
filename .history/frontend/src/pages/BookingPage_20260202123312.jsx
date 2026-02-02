@@ -73,16 +73,11 @@ const BookingPage = () => {
         try {
             const bookingData = {
                 showTimeId: showtimeId,
-                seats: selectedSeats.map(seat => {
-                    const row = seat[0];
-                    let seatType = 'regular';
-                    if (row === 'N' || row === 'M') {
-                        seatType = 'vip';
-                    } else if (['L', 'K', 'J', 'I', 'H', 'G'].includes(row)) {
-                        seatType = 'premium';
-                    }
-                    return { seatNumber: seat, seatType };
-                }),
+                seats: selectedSeats.map(seat => ({
+                    seatNumber: seat,
+                    seatType: seat.startsWith('N') || seat.startsWith('M') ? 'vip' : 
+                              seat.startsWith('E') || seat.startsWith('D') || seat.startsWith('C') || seat.startsWith('B') ? 'regular' : 'premium'
+                })),
                 totalAmount: calculateTotal()
             };
 

@@ -59,7 +59,7 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     ];
 
     const handleSeatClick = (seatId) => {
-        if (actualBookedSeats.includes(seatId)) return;
+        if (bookedSeats.includes(seatId)) return;
         
         if (selectedSeats.includes(seatId)) {
             onSeatSelect(selectedSeats.filter(s => s !== seatId));
@@ -71,13 +71,12 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     const isBestseller = (seatId) => {
         const row = seatId[0];
         const num = parseInt(seatId.slice(1));
-        // Center seats in middle rows are bestsellers (only if not sold)
-        if (actualBookedSeats.includes(seatId)) return false;
+        // Center seats in middle rows are bestsellers
         return ['J', 'K', 'I', 'H'].includes(row) && num >= 6 && num <= 11;
     };
 
     const getSeatStatus = (seatId) => {
-        if (actualBookedSeats.includes(seatId)) return 'sold';
+        if (bookedSeats.includes(seatId)) return 'sold';
         if (selectedSeats.includes(seatId)) return 'selected';
         if (isBestseller(seatId)) return 'bestseller';
         return 'available';

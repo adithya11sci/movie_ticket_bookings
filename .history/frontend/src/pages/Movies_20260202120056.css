@@ -1,0 +1,90 @@
+/* Movies.css - Professional Clean Design */
+
+.movies-page {
+    min-height: 100vh;
+    padding: 2rem;
+    background: var(--bg-light);
+}
+
+.movies-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.movies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.movies-header h1 {
+    color: var(--text-dark);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-tab {
+    padding: 0.6rem 1.25rem;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    background: var(--bg-white);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.filter-tab:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.filter-tab.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-light);
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.no-movies {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 4rem 2rem;
+    background: var(--bg-white);
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .movies-page {
+        padding: 1rem;
+    }
+    
+    .movies-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .movies-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+}

@@ -12,6 +12,7 @@ const MovieDetails = () => {
     const [loading, setLoading] = useState(true);
     const [selectedDate, setSelectedDate] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const [showBooking, setShowBooking] = useState(false);
 
     // Generate next 7 days
     const getNextDays = () => {
@@ -115,68 +116,68 @@ const MovieDetails = () => {
     return (
         <div className="movie-details-page">
             {/* Hero Banner Section - Like BookMyShow */}
-            <div className="movie-hero-banner" style={{
-                backgroundImage: `linear-gradient(90deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.7) 50%, transparent 100%), url(${movie.posterUrl})`
-            }}>
-                <div className="hero-banner-content">
-                    {/* Movie Poster */}
-                    <div className="hero-poster-container">
-                        <img src={movie.posterUrl} alt={movie.title} className="hero-poster" />
-                        <div className="trailer-btn">
-                            <FaPlay /> Trailer
-                        </div>
-                        <span className="in-cinemas-badge">In cinemas</span>
-                    </div>
-
-                    {/* Movie Info */}
-                    <div className="hero-movie-info">
-                        <h1 className="hero-title">{movie.title}</h1>
-                        
-                        {/* Rating Box */}
-                        <div className="rating-box">
-                            <div className="rating-score">
-                                <FaStar className="star-icon" />
-                                <span className="score">{movie.rating}/10</span>
-                                <span className="votes">({Math.floor(Math.random() * 10) + 1}K+ Votes)</span>
+            {!showBooking ? (
+                <div className="movie-hero-banner" style={{
+                    backgroundImage: `linear-gradient(90deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.7) 50%, transparent 100%), url(${movie.posterUrl})`
+                }}>
+                    <div className="hero-banner-content">
+                        {/* Movie Poster */}
+                        <div className="hero-poster-container">
+                            <img src={movie.posterUrl} alt={movie.title} className="hero-poster" />
+                            <div className="trailer-btn">
+                                <FaPlay /> Trailer
                             </div>
-                            <button className="rate-now-btn">Rate now</button>
+                            <span className="in-cinemas-badge">In cinemas</span>
                         </div>
 
-                        {/* Movie Meta */}
-                        <div className="hero-meta">
-                            <span>{Math.floor(movie.duration / 60)}h {movie.duration % 60}m</span>
-                            <span className="dot">•</span>
-                            <span>{movie.genre?.join(', ')}</span>
-                            <span className="dot">•</span>
-                            <span>{movie.rating >= 7 ? 'UA16+' : 'A'}</span>
-                            <span className="dot">•</span>
-                            <span>{new Date(movie.releaseDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                        {/* Movie Info */}
+                        <div className="hero-movie-info">
+                            <h1 className="hero-title">{movie.title}</h1>
+                            
+                            {/* Rating Box */}
+                            <div className="rating-box">
+                                <div className="rating-score">
+                                    <FaStar className="star-icon" />
+                                    <span className="score">{movie.rating}/10</span>
+                                    <span className="votes">({Math.floor(Math.random() * 10) + 1}K+ Votes)</span>
+                                </div>
+                                <button className="rate-now-btn">Rate now</button>
+                            </div>
+
+                            {/* Movie Meta */}
+                            <div className="hero-meta">
+                                <span>{Math.floor(movie.duration / 60)}h {movie.duration % 60}m</span>
+                                <span className="dot">•</span>
+                                <span>{movie.genre?.join(', ')}</span>
+                                <span className="dot">•</span>
+                                <span>{movie.rating >= 7 ? 'UA16+' : 'A'}</span>
+                                <span className="dot">•</span>
+                                <span>{new Date(movie.releaseDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                            </div>
+
+                            {/* Format Tags */}
+                            <div className="format-tags">
+                                <span className="format-tag">2D</span>
+                                <span className="format-tag">{movie.language || 'English'}</span>
+                            </div>
+
+                            {/* Book Tickets Button */}
+                            <button className="book-tickets-btn" onClick={() => setShowBooking(true)}>
+                                Book tickets
+                            </button>
                         </div>
 
-                        {/* Format Tags */}
-                        <div className="format-tags">
-                            <span className="format-tag">2D</span>
-                            <span className="format-tag">{movie.language || 'English'}</span>
-                        </div>
-
-                        {/* Book Tickets Button - Scrolls to booking section */}
-                        <button className="book-tickets-btn" onClick={() => document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' })}>
-                            Book tickets
+                        {/* Share Button */}
+                        <button className="share-btn">
+                            <FaShareAlt /> Share
                         </button>
                     </div>
-
-                    {/* Share Button */}
-                    <button className="share-btn">
-                        <FaShareAlt /> Share
-                    </button>
                 </div>
-            </div>
-
-            {/* Booking Section - Movie Header + Date Selector + Theaters */}
-            <div id="booking-section">
-                {/* Movie Header - Compact */}
-                <div className="movie-header">
-                    <div className="movie-header-content">
+            ) : (
+                <>
+                    {/* Movie Header - Compact for booking view */}
+                    <div className="movie-header">
+                        <div className="movie-header-content">
                             <h1 className="movie-title-main">
                                 {movie.title} - ({movie.language || 'English'})
                             </h1>
@@ -311,7 +312,6 @@ const MovieDetails = () => {
                         <p>No showtimes available for this date. Please select another date.</p>
                     </div>
                 )}
-            </div>
             </div>
         </div>
     );
