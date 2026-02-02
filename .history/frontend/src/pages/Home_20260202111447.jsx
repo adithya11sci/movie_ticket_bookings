@@ -87,8 +87,8 @@ const Home = () => {
                     <div className="loading">Loading movies</div>
                 ) : nowShowing.length > 0 ? (
                     <div className="movies-grid">
-                        {nowShowing.map((movie, index) => (
-                            <MovieCard key={movie._id} movie={movie} index={index} />
+                        {nowShowing.map(movie => (
+                            <MovieCard key={movie._id} movie={movie} />
                         ))}
                     </div>
                 ) : (
@@ -103,8 +103,8 @@ const Home = () => {
                 <section className="movies-section">
                     <h2>🎥 Coming Soon</h2>
                     <div className="movies-grid">
-                        {comingSoon.map((movie, index) => (
-                            <MovieCard key={movie._id} movie={movie} index={index} />
+                        {comingSoon.map(movie => (
+                            <MovieCard key={movie._id} movie={movie} />
                         ))}
                     </div>
                 </section>

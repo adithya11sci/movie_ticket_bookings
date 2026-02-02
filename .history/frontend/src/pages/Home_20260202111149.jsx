@@ -7,7 +7,6 @@ import './Home.css';
 
 const Home = () => {
     const [movies, setMovies] = useState([]);
-    const [allMovies, setAllMovies] = useState([]); // store all movies for filtering
     const [nowShowing, setNowShowing] = useState([]);
     const [comingSoon, setComingSoon] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,34 +16,14 @@ const Home = () => {
         fetchMovies();
     }, []);
 
-    // live search - filter movies as user types
-    useEffect(() => {
-        if (!searchQuery.trim()) {
-            // if search is empty, show all movies
-            setNowShowing(allMovies.filter(m => m.isNowShowing));
-            setComingSoon(allMovies.filter(m => !m.isNowShowing));
-        } else {
-            // filter movies based on search query
-            const query = searchQuery.toLowerCase();
-            const filtered = allMovies.filter(movie => 
-                movie.title.toLowerCase().includes(query) ||
-                movie.genre?.some(g => g.toLowerCase().includes(query)) ||
-                movie.language?.toLowerCase().includes(query) ||
-                movie.description?.toLowerCase().includes(query)
-            );
-            setNowShowing(filtered.filter(m => m.isNowShowing));
-            setComingSoon(filtered.filter(m => !m.isNowShowing));
-        }
-    }, [searchQuery, allMovies]);
-
     const fetchMovies = async () => {
         try {
             const res = await API.get('/movies');
-            const moviesData = res.data;
-            setMovies(moviesData);
-            setAllMovies(moviesData); // store for filtering
-            setNowShowing(moviesData.filter(m => m.isNowShowing));
-            setComingSoon(moviesData.filter(m => !m.isNowShowing));
+            const allMovies = res.data;
+            setMovies(allMovies);
+            // separate now showing and coming soon
+            setNowShowing(allMovies.filter(m => m.isNowShowing));
+            setComingSoon(allMovies.filter(m => !m.isNowShowing));
         } catch (error) {
             console.log('Error fetching movies:', error);
         } finally {
@@ -52,9 +31,20 @@ const Home = () => {
         }
     };
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        // search is now handled by useEffect above
+        if (!searchQuery.trim()) {
+            fetchMovies();
+            return;
+        }
+        try {
+            const res = await API.get(`/movies/search?query=${searchQuery}`);
+            setMovies(res.data);
+            setNowShowing(res.data.filter(m => m.isNowShowing));
+            setComingSoon(res.data.filter(m => !m.isNowShowing));
+        } catch (error) {
+            console.log('Search error:', error);
+        }
     };
 
     return (
@@ -87,8 +77,8 @@ const Home = () => {
                     <div className="loading">Loading movies</div>
                 ) : nowShowing.length > 0 ? (
                     <div className="movies-grid">
-                        {nowShowing.map((movie, index) => (
-                            <MovieCard key={movie._id} movie={movie} index={index} />
+                        {nowShowing.map(movie => (
+                            <MovieCard key={movie._id} movie={movie} />
                         ))}
                     </div>
                 ) : (
@@ -103,8 +93,8 @@ const Home = () => {
                 <section className="movies-section">
                     <h2>🎥 Coming Soon</h2>
                     <div className="movies-grid">
-                        {comingSoon.map((movie, index) => (
-                            <MovieCard key={movie._id} movie={movie} index={index} />
+                        {comingSoon.map(movie => (
+                            <MovieCard key={movie._id} movie={movie} />
                         ))}
                     </div>
                 </section>

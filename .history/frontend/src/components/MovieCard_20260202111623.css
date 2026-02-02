@@ -3,28 +3,23 @@
     background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.9));
     border-radius: 20px;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    animation: cardFadeIn 0.8s ease-out backwards;
+    animation: fadeInUp 0.6s ease-out backwards;
 }
 
-/* card fade in animation */
-@keyframes cardFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+.movie-card:nth-child(1) { animation-delay: 0.1s; }
+.movie-card:nth-child(2) { animation-delay: 0.15s; }
+.movie-card:nth-child(3) { animation-delay: 0.2s; }
+.movie-card:nth-child(4) { animation-delay: 0.25s; }
+.movie-card:nth-child(5) { animation-delay: 0.3s; }
+.movie-card:nth-child(6) { animation-delay: 0.35s; }
 
-/* hover effect - smooth lift */
 .movie-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(233, 69, 96, 0.2);
+    border-color: rgba(233, 69, 96, 0.4);
 }
 
 .movie-poster {
@@ -37,14 +32,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease, filter 0.4s ease;
 }
 
 .movie-card:hover .movie-poster img {
-    transform: scale(1.08);
+    transform: scale(1.1);
+    filter: brightness(0.7);
 }
 
-/* gradient overlay on poster - always visible at bottom */
+/* Rating badge on poster */
 .movie-poster::before {
     content: '';
     position: absolute;
@@ -55,27 +51,35 @@
     background: linear-gradient(
         to bottom,
         transparent 0%,
-        transparent 60%,
-        rgba(10, 10, 26, 0.95) 100%
+        transparent 50%,
+        rgba(10, 10, 26, 0.9) 100%
     );
     z-index: 1;
-    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-/* hover overlay with book button */
+.movie-card:hover .movie-poster::before {
+    opacity: 1;
+}
+
 .movie-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(
+        135deg,
+        rgba(233, 69, 96, 0.9) 0%,
+        rgba(255, 107, 107, 0.85) 100%
+    );
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     z-index: 2;
 }
 
@@ -84,8 +88,8 @@
 }
 
 .book-btn {
-    background: linear-gradient(135deg, #e94560, #ff6b6b);
-    color: #fff;
+    background: #fff;
+    color: #e94560;
     padding: 1rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
