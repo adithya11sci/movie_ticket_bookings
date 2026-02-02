@@ -7,7 +7,7 @@ const ShowTime = require('../models/ShowTime');
 const cleanupExpiredLocks = async () => {
     try {
         const now = new Date();
-        
+
         // Find all showtimes with expired locks
         const showtimes = await ShowTime.find({
             'seatStatus': {
@@ -17,9 +17,9 @@ const cleanupExpiredLocks = async () => {
                 }
             }
         });
-        
+
         let cleanedCount = 0;
-        
+
         for (const showtime of showtimes) {
             // Remove expired locks
             const originalLength = showtime.seatStatus.length;
@@ -29,15 +29,15 @@ const cleanupExpiredLocks = async () => {
                 }
                 return true;
             });
-            
+
             cleanedCount += originalLength - showtime.seatStatus.length;
             await showtime.save();
         }
-        
+
         if (cleanedCount > 0) {
             console.log(`🧹 Cleaned up ${cleanedCount} expired seat locks`);
         }
-        
+
     } catch (error) {
         console.error('Error cleaning up expired locks:', error);
     }
@@ -51,9 +51,9 @@ const startCleanupScheduler = () => {
     // Run cleanup every minute
     setInterval(cleanupExpiredLocks, 60 * 1000);
     console.log('🕐 Seat lock cleanup scheduler started (runs every minute)');
-    
+
     // Also run once on startup
-    cleanupExpiredLocks();
+    // cleanupExpiredLocks();
 };
 
 module.exports = {

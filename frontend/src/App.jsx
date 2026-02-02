@@ -18,6 +18,7 @@ import MovieDetails from './pages/MovieDetails';
 import BookingPage from './pages/BookingPage';
 import PaymentPage from './pages/PaymentPage';
 import MyBookings from './pages/MyBookings';
+import TicketPage from './pages/TicketPage';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -57,6 +58,11 @@ function App() {
                             <Route path="/my-bookings" element={
                                 <ProtectedRoute>
                                     <MyBookings />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/booking/:bookingId/ticket" element={
+                                <ProtectedRoute>
+                                    <TicketPage />
                                 </ProtectedRoute>
                             } />
 

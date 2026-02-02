@@ -7,9 +7,6 @@ const { startCleanupScheduler } = require('./utils/seatCleanup');
 // Load environment variables
 dotenv.config();
 
-// Connect to database
-connectDB();
-
 const app = express();
 
 // Middleware
@@ -27,7 +24,7 @@ app.use('/api/admin', require('./routes/adminRoutes'));
 
 // Basic route for testing
 app.get('/', (req, res) => {
-    res.json({ 
+    res.json({
         message: 'Welcome to Movie Ticket Booking API',
         status: 'Server is running'
     });
@@ -36,9 +33,15 @@ app.get('/', (req, res) => {
 // Port configuration
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    
-    // Start the seat lock cleanup scheduler
-    startCleanupScheduler();
+// Connect to database
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+
+        // Start the seat lock cleanup scheduler
+        startCleanupScheduler();
+    });
+}).catch(err => {
+    console.error('Failed to connect to database:', err);
+    process.exit(1);
 });
