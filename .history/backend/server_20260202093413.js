@@ -22,7 +22,6 @@ app.use('/api/movies', require('./routes/movieRoutes'));
 app.use('/api/theaters', require('./routes/theaterRoutes'));
 app.use('/api/showtimes', require('./routes/showTimeRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
 
 // Basic route for testing
 app.get('/', (req, res) => {
