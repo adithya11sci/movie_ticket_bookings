@@ -1,0 +1,100 @@
+.payment-page {
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    background: #f5f5f5;
+}
+
+.payment-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.payment-container h2 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.booking-details {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.booking-details h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.booking-details p {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.booking-details .total-amount {
+    font-size: 1.5rem;
+    color: #e94560;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.payment-methods {
+    margin-bottom: 2rem;
+}
+
+.payment-methods h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    border-color: #e94560;
+}
+
+.payment-option.selected {
+    border-color: #e94560;
+    background: rgba(233, 69, 96, 0.05);
+}
+
+.payment-option input {
+    margin-right: 1rem;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #e94560, #ff6b6b);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+}
+
+.pay-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

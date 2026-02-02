@@ -1,0 +1,72 @@
+.my-bookings-page {
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.my-bookings-page h1 {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.booking-card {
+    background: rgba(26, 26, 46, 0.95);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.booking-card img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.booking-info h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.booking-info p {
+    color: #888;
+    margin-bottom: 0.3rem;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.booking-status.confirmed {
+    background: #4abd5d;
+    color: #fff;
+}
+
+.booking-status.pending {
+    background: #f5c518;
+    color: #333;
+}
+
+.booking-status.cancelled {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.no-bookings {
+    text-align: center;
+    color: #888;
+    padding: 3rem;
+}

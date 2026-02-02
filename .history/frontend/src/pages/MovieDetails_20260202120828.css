@@ -1,0 +1,384 @@
+/* Movie Hero Banner */
+.movie-hero-banner {
+    position: relative;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #0f0f23 0%, rgba(15, 15, 35, 0.8) 50%, rgba(15, 15, 35, 0.4) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 4rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-poster {
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: -80px;
+}
+
+.hero-info {
+    flex: 1;
+    padding-bottom: 1rem;
+}
+
+.hero-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.hero-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.rating-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #1a1a2e;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.rating-box i {
+    color: #ffd700;
+}
+
+.rating-box span {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.hero-genres {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.genre-tag {
+    background: rgba(233, 69, 96, 0.2);
+    color: #e94560;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.book-tickets-btn {
+    background: #e94560;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.book-tickets-btn:hover {
+    background: #ff6b6b;
+}
+
+.trailer-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.trailer-btn:hover {
+    background: #fff;
+    color: #0f0f23;
+}
+
+/* Booking Section */
+.booking-section {
+    padding: 6rem 4rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.booking-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+/* Date Tabs */
+.date-tabs {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.date-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    background: #1a1a2e;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    min-width: 70px;
+    transition: all 0.3s;
+}
+
+.date-tab:hover {
+    border-color: #e94560;
+}
+
+.date-tab.active {
+    background: #e94560;
+    border-color: #e94560;
+}
+
+.date-tab .day {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.date-tab.active .day {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.date-tab .date {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.date-tab .month {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.date-tab.active .month {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Theater List */
+.theater-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.theater-row {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.theater-info {
+    min-width: 250px;
+}
+
+.theater-info h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.theater-info p {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.theater-showtimes {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.showtime-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #00b894;
+    border-radius: 8px;
+    background: transparent;
+    color: #00b894;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.showtime-btn:hover {
+    background: #00b894;
+    color: #fff;
+}
+
+.showtime-btn.unavailable {
+    border-color: #636e72;
+    color: #636e72;
+    cursor: not-allowed;
+}
+
+/* About Section */
+.about-section {
+    padding: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.about-section p {
+    color: #888;
+    line-height: 1.8;
+}
+
+/* Cast Section */
+.cast-section {
+    padding: 0 4rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cast-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.cast-grid {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.cast-card {
+    text-align: center;
+    min-width: 120px;
+}
+
+.cast-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.cast-card h4 {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.cast-card p {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+/* No Showtimes */
+.no-showtimes {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .movie-hero-banner {
+        height: 400px;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .hero-poster {
+        width: 180px;
+        margin-bottom: -60px;
+    }
+    
+    .hero-info h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-meta {
+        justify-content: center;
+    }
+    
+    .hero-genres {
+        justify-content: center;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .booking-section {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    .theater-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .theater-info {
+        min-width: auto;
+    }
+    
+    .about-section, .cast-section {
+        padding: 2rem 1rem;
+    }
+}

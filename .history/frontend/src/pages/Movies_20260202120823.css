@@ -1,0 +1,51 @@
+.movies-page {
+    padding: 2rem;
+}
+
+.movies-page h1 {
+    margin-bottom: 2rem;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid #e94560;
+    border-radius: 25px;
+    background: transparent;
+    color: #e94560;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-tab:hover, .filter-tab.active {
+    background: #e94560;
+    color: #fff;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.no-movies {
+    text-align: center;
+    color: #888;
+    padding: 3rem;
+}
+
+@media (max-width: 768px) {
+    .movies-page {
+        padding: 1rem;
+    }
+    
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

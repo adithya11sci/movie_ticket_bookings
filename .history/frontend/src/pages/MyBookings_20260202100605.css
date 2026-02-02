@@ -1,0 +1,156 @@
+.my-bookings {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.my-bookings h1 {
+    color: #fff;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.booking-card {
+    background: #1a1a2e;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.booking-poster img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.booking-details h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.booking-details p {
+    color: #888;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.booking-details .seats {
+    color: #e94560;
+    font-weight: bold;
+}
+
+.booking-details .amount {
+    color: #00b894;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.booking-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.status {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.status.confirmed {
+    background: rgba(0, 184, 148, 0.2);
+    color: #00b894;
+}
+
+.status.cancelled {
+    background: rgba(233, 69, 96, 0.2);
+    color: #e94560;
+}
+
+.status.pending {
+    background: rgba(253, 203, 110, 0.2);
+    color: #fdcb6e;
+}
+
+.payment {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.payment.completed {
+    color: #00b894;
+}
+
+.payment.pending {
+    color: #fdcb6e;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: 1px solid #e94560;
+    color: #e94560;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #e94560;
+    color: #fff;
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #888;
+}
+
+.no-bookings button {
+    margin-top: 1rem;
+    background: #e94560;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+    .booking-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .booking-poster {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .booking-poster img {
+        width: 120px;
+    }
+    
+    .booking-status {
+        align-items: center;
+    }
+}

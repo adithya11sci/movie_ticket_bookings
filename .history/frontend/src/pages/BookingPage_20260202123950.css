@@ -1,0 +1,274 @@
+/* BookingPage.css - Professional BookMyShow Style */
+
+.booking-page-bms {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding-bottom: 90px;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.loading-page, .error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f5f5f5;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ============ HEADER ============ */
+.booking-header {
+    background: #fff;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e8e8e8;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #f5f5f5;
+    color: #f84464;
+}
+
+.movie-theater-info h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.movie-theater-info p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.tickets-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border: 1px solid #f84464;
+    border-radius: 6px;
+    background: #fff;
+    color: #f84464;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tickets-btn:hover {
+    background: #fff0f3;
+}
+
+/* ============ SHOWTIME SELECTOR ============ */
+.showtime-selector {
+    display: flex;
+    gap: 10px;
+    padding: 14px 24px;
+    background: #fff;
+    overflow-x: auto;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.showtime-selector::-webkit-scrollbar {
+    height: 0;
+}
+
+.showtime-selector .time-btn {
+    padding: 10px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.showtime-selector .time-btn:hover {
+    border-color: #4abd5d;
+    color: #4abd5d;
+}
+
+.showtime-selector .time-btn.active {
+    background: #4abd5d;
+    border-color: #4abd5d;
+    color: #fff;
+}
+
+/* ============ BOTTOM BAR ============ */
+.booking-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 200;
+    border-top: 1px solid #e8e8e8;
+}
+
+.selected-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.selected-info .seats {
+    font-size: 13px;
+    color: #666;
+    font-weight: 400;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.selected-info .total {
+    font-size: 20px;
+    font-weight: 700;
+    color: #222;
+}
+
+.proceed-btn {
+    padding: 14px 40px;
+    background: #f84464;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.proceed-btn:hover {
+    background: #dc3545;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(248, 68, 100, 0.3);
+}
+
+.proceed-btn:active {
+    transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .booking-header {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .movie-theater-info h1 {
+        font-size: 14px;
+    }
+    
+    .movie-theater-info p {
+        font-size: 12px;
+    }
+    
+    .tickets-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+    
+    .showtime-selector {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+    
+    .showtime-selector .time-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .booking-bottom-bar {
+        padding: 12px 16px;
+    }
+    
+    .proceed-btn {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+    
+    .selected-info .total {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left {
+        gap: 10px;
+    }
+    
+    .back-btn {
+        font-size: 16px;
+        padding: 6px;
+    }
+    
+    .movie-theater-info h1 {
+        font-size: 13px;
+    }
+    
+    .movie-theater-info p {
+        font-size: 11px;
+    }
+    
+    .tickets-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .proceed-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .selected-info .seats {
+        font-size: 11px;
+        max-width: 120px;
+    }
+    
+    .selected-info .total {
+        font-size: 16px;
+    }
+}
