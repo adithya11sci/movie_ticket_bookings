@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // create axios instance with base config
 const API = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'https://movie-ticket-bookings-93ni.vercel.app/api',
+    baseURL: import.meta.env.VITE_API_URL || 'https://movie-ticket-bookings-93ni.vercel.app/',
     headers: {
         'Content-Type': 'application/json'
     }
