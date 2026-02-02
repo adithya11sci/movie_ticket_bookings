@@ -168,16 +168,17 @@
     margin-left: var(--space-4);
 }
 
-/* Movies Grid - BookMyShow Style */
+/* Movies Grid - BookMyShow Style (4 columns for bigger cards) */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-6);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
 }
 
 @media (max-width: 1200px) {
     .movies-grid {
         grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-6);
     }
 }
 
