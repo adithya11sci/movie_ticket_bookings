@@ -1,50 +1,47 @@
-/* Global App Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f0f23;
-    color: #fff;
-}
+/* ================================================
+   App Layout Styles
+   ================================================ */
 
 .app {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    min-height: calc(100vh - 70px);
+    flex: 1;
+    min-height: calc(100vh - 80px);
 }
 
+/* Page Transitions */
+main>* {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Links Reset */
 a {
     text-decoration: none;
+    color: inherit;
 }
 
-/* loading and error pages */
-.loading-page, .error-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    color: #888;
-    font-size: 1.2rem;
+a:hover {
+    color: var(--primary);
 }
 
-/* scrollbar styles */
-::-webkit-scrollbar {
-    width: 8px;
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
-::-webkit-scrollbar-track {
-    background: #1a1a2e;
+/* Prevent FOUC */
+.app.loading {
+    opacity: 0;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #e94560;
-    border-radius: 5px;
-}
+.app.loaded {
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }

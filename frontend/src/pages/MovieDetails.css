@@ -1,528 +1,822 @@
-/* MovieDetails.css - BookMyShow Style */
+/* ================================================
+   Movie Details Page - BookMyShow Style
+   ================================================ */
 
 .movie-details-page {
     min-height: 100vh;
     background: #f5f5f5;
 }
 
-/* Hero Banner */
-.hero-banner {
+/* ================================================
+   Hero Banner - Movie Info Section (Dark)
+   ================================================ */
+.movie-hero-banner {
     position: relative;
-    height: 500px;
-    overflow: hidden;
-}
-
-.hero-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background-color: #1a1a2e;
     background-size: cover;
-    background-position: center top;
-    filter: blur(20px);
-    transform: scale(1.1);
+    background-position: center right;
+    padding: var(--space-8) var(--space-6);
 }
 
-.hero-overlay {
+.movie-hero-banner::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.4) 100%);
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(26, 26, 46, 1) 0%,
+            rgba(26, 26, 46, 0.95) 30%,
+            rgba(26, 26, 46, 0.7) 60%,
+            rgba(26, 26, 46, 0.4) 100%);
+    z-index: 1;
 }
 
-.hero-content {
+.hero-banner-content {
     position: relative;
-    z-index: 10;
-    max-width: 1200px;
+    z-index: 2;
+    max-width: var(--container-xl);
     margin: 0 auto;
-    padding: 2rem;
     display: flex;
-    gap: 2.5rem;
-    height: 100%;
-    align-items: flex-end;
-    padding-bottom: 3rem;
+    gap: var(--space-8);
+    align-items: flex-start;
 }
 
-.movie-poster-section {
+/* Hero Poster */
+.hero-poster-container {
+    position: relative;
     flex-shrink: 0;
-    position: relative;
-}
-
-.movie-poster-wrapper {
-    position: relative;
-    width: 280px;
-    border-radius: 12px;
+    width: 260px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.movie-poster-wrapper img {
+.hero-poster {
     width: 100%;
-    height: 400px;
+    height: 380px;
     object-fit: cover;
     display: block;
 }
 
-.in-cinemas-badge {
+.trailer-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #000;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-family: inherit;
+    font-size: var(--text-xs);
+    font-weight: 500;
     color: #fff;
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
-.trailer-btn {
+.trailer-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.in-cinemas-badge {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.8);
+    padding: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-align: center;
     color: #fff;
-    padding: 1rem;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.3s ease;
+    background: rgba(0, 0, 0, 0.85);
+    text-transform: capitalize;
 }
 
-.trailer-btn:hover {
-    background: rgba(0, 0, 0, 0.95);
-}
-
-.movie-info-section {
+/* Hero Movie Info */
+.hero-movie-info {
     flex: 1;
-    color: #fff;
+    padding-top: var(--space-4);
 }
 
-.movie-info-section h1 {
-    font-size: 2.5rem;
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
 }
 
+/* Rating Box */
 .rating-box {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
 }
 
-.rating-box .star-icon {
-    color: #ffd700;
-    font-size: 1.2rem;
+.rating-score {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
 }
 
-.rating-box .rating-value {
+.rating-score .star-icon {
+    color: #e91e63;
     font-size: 1.1rem;
+}
+
+.rating-score .score {
+    font-size: var(--text-lg);
     font-weight: 700;
+    color: #fff;
 }
 
-.rating-box .rating-count {
-    font-size: 0.85rem;
-    color: #ccc;
+.rating-score .votes {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: var(--space-1);
 }
 
+.rate-now-btn {
+    padding: var(--space-2) var(--space-4);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.rate-now-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+/* Hero Meta */
+.hero-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-meta .dot {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Format Tags */
 .format-tags {
     display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
     flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
 }
 
 .format-tag {
-    padding: 0.4rem 1rem;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
 }
 
-.movie-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    color: #ddd;
-}
-
-.meta-divider {
-    color: #666;
-}
-
-.movie-genres {
-    margin-bottom: 1.5rem;
-}
-
-.movie-genres span {
-    font-size: 0.95rem;
-    color: #ccc;
-}
-
-.movie-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
+/* Book Tickets Button */
 .book-tickets-btn {
-    padding: 1rem 2.5rem;
-    background: #f84464;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-8);
+    font-family: inherit;
+    font-size: var(--text-base);
     font-weight: 600;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
 }
 
 .book-tickets-btn:hover {
-    background: #e73555;
+    background: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(248, 68, 100, 0.4);
 }
 
-.action-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
+/* Share Button */
+.share-btn {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-6);
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-fast);
+    z-index: 10;
 }
 
-.action-btn:hover {
+.share-btn:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.action-btn.liked {
-    color: #f84464;
-    background: rgba(248, 68, 100, 0.2);
-    border-color: #f84464;
+/* ================================================
+   Booking Section (Light Background)
+   ================================================ */
+#booking-section {
+    background: #f5f5f5;
 }
 
-/* Movie About Section */
-.movie-about {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.movie-about h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.movie-about p {
-    color: #666;
-    line-height: 1.8;
-    font-size: 1rem;
-}
-
-/* Booking Section */
-.booking-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.booking-section h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-/* Date Selector */
-.date-selector {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-}
-
-.date-tab {
-    padding: 0.75rem 1.5rem;
-    border: none;
+/* Movie Header - Compact */
+.movie-header {
     background: #fff;
-    border-radius: 25px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 80px;
-    transition: all 0.2s ease;
-    border: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e0e0e0;
+    padding: var(--space-4) var(--space-6);
 }
 
-.date-tab:hover {
-    border-color: #f84464;
+.movie-header-content {
+    max-width: var(--container-xl);
+    margin: 0 auto;
 }
 
-.date-tab.active {
-    background: #f84464;
-    color: #fff;
-    border-color: #f84464;
-}
-
-.date-tab .day {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-}
-
-.date-tab .date {
-    font-size: 1.1rem;
+.movie-title-main {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
     font-weight: 700;
+    color: #222;
+    margin-bottom: var(--space-2);
 }
 
-.date-tab .month {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-}
-
-/* Filter Bar */
-.filter-bar {
+.movie-tags {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.movie-tags .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: #666;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-full);
+}
+
+.movie-tags .tag svg {
+    font-size: 0.7rem;
+}
+
+/* ================================================
+   Date Filter Section
+   ================================================ */
+.date-filter-section {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: var(--space-4) var(--space-6);
+}
+
+.date-filter-content {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
     flex-wrap: wrap;
 }
 
-.filter-btn {
+/* Date Tabs - Week View */
+.date-tabs {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    gap: var(--space-1);
 }
 
-.filter-btn:hover {
-    border-color: #f84464;
-}
-
-.search-input {
-    flex: 1;
-    min-width: 200px;
-    padding: 0.6rem 1rem;
-    padding-left: 2.5rem;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    position: relative;
-}
-
-.search-wrapper {
-    position: relative;
-    flex: 1;
-    min-width: 200px;
-}
-
-.search-wrapper svg {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-}
-
-.search-wrapper input {
-    width: 100%;
-    padding: 0.6rem 1rem 0.6rem 2.5rem;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-/* Theater List */
-.theater-list {
+.date-tab {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    min-width: 55px;
+    padding: var(--space-2) var(--space-3);
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.date-tab:hover {
+    background: rgba(248, 68, 100, 0.05);
+}
+
+.date-tab.active {
+    background: var(--primary);
+}
+
+.date-tab .day-name {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.date-tab.active .day-name {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.date-tab .day-date {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+}
+
+.date-tab.active .day-date {
+    color: #fff;
+}
+
+.date-tab .day-month {
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.date-tab.active .day-month {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Filter Options */
+.filter-options {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.filter-dropdown {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    color: #333;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-dropdown:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.filter-dropdown svg {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+.search-theaters-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.search-theaters-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Legend Bar */
+.legend-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-6);
+    background: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: var(--text-xs);
+}
+
+.subtitle-info {
+    color: #666;
+}
+
+.lan-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    margin-right: var(--space-2);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #fff;
+    background: #4ade80;
+    border-radius: 3px;
+}
+
+.got-it {
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: var(--space-2);
+}
+
+.got-it:hover {
+    text-decoration: underline;
+}
+
+.availability-legend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.legend-item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-item.available .dot {
+    background: #4ade80;
+}
+
+.legend-item.fast-filling .dot {
+    background: #f97316;
+}
+
+/* ================================================
+   Theaters Section
+   ================================================ */
+.theaters-section {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-6);
 }
 
 .theater-row {
     background: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e8e8e8;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    transition: all var(--transition-fast);
 }
 
-.theater-info {
+.theater-row:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.theater-details {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
 }
 
-.theater-icon {
-    color: #4abd5d;
-    font-size: 1.2rem;
+.theater-name-section {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
 }
 
-.theater-details h3 {
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
     font-size: 1rem;
+    padding: var(--space-1);
+    transition: color var(--transition-fast);
+}
+
+.favorite-btn:hover {
+    color: var(--primary);
+}
+
+.favorite-btn .filled {
+    color: var(--primary);
+}
+
+.theater-name-info h3 {
+    font-size: var(--text-sm);
     font-weight: 600;
     color: #333;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-1);
 }
 
-.theater-details p {
-    font-size: 0.85rem;
-    color: #999;
+.theater-location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: #888;
+}
+
+.info-icon {
+    font-size: 0.7rem;
+    color: #bbb;
 }
 
 .theater-amenities {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: var(--space-2);
 }
 
-.amenity-tag {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-    background: #f5f5f5;
-    border-radius: 4px;
-    color: #666;
+.amenity {
+    font-size: 1rem;
+    cursor: help;
 }
 
-.showtimes {
+/* Showtimes Grid - BookMyShow Style */
+.showtimes-grid {
     display: flex;
-    gap: 0.75rem;
     flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
 }
 
 .showtime-btn {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid #4abd5d;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+    padding: var(--space-2) var(--space-4);
+    font-family: inherit;
     background: #fff;
-    color: #4abd5d;
-    font-size: 0.9rem;
-    font-weight: 500;
+    border: 1px solid #4ade80;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .showtime-btn:hover {
-    background: #4abd5d;
-    color: #fff;
+    background: #f0fff4;
+    border-color: #22c55e;
 }
 
-.showtime-btn .price {
-    display: block;
-    font-size: 0.7rem;
-    color: #999;
-    margin-top: 0.25rem;
+.showtime-btn .time {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: #22c55e;
 }
 
-.showtime-btn:hover .price {
-    color: rgba(255, 255, 255, 0.8);
+.showtime-btn .screen-type {
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* Fast Filling State */
+.showtime-btn.fast-filling {
+    border-color: #f97316;
+}
+
+.showtime-btn.fast-filling .time {
+    color: #f97316;
+}
+
+.showtime-btn.fast-filling:hover {
+    background: #fff7ed;
+}
+
+/* Almost Full State */
+.showtime-btn.almost-full {
+    border-color: #ef4444;
+    opacity: 0.8;
+}
+
+.showtime-btn.almost-full .time {
+    color: #ef4444;
+}
+
+/* Theater Footer */
+.theater-footer {
+    padding-top: var(--space-2);
+    border-top: 1px solid #f0f0f0;
+}
+
+.cancellation-info {
+    font-size: var(--text-xs);
+    color: #4ade80;
+    font-weight: 500;
 }
 
 /* No Showtimes */
 .no-showtimes {
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: var(--space-12);
     text-align: center;
-    padding: 3rem;
-    color: #999;
+    color: #888;
+}
+
+.no-showtimes p {
+    font-size: var(--text-base);
 }
 
 /* Loading States */
-.loading-page, .error-page {
+.loading-page,
+.error-page {
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    gap: var(--space-4);
     background: #f5f5f5;
-    color: #333;
-    font-size: 1.2rem;
+    color: #666;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-banner {
-        height: auto;
+/* ================================================
+   Responsive Design
+   ================================================ */
+@media (max-width: 1024px) {
+    .hero-banner-content {
+        gap: var(--space-6);
     }
-    
-    .hero-content {
+
+    .hero-poster-container {
+        width: 220px;
+    }
+
+    .hero-poster {
+        height: 320px;
+    }
+
+    .filter-options {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-hero-banner {
+        padding: var(--space-6) var(--space-4);
+    }
+
+    .hero-banner-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 2rem 1rem;
     }
-    
-    .movie-poster-wrapper {
-        width: 200px;
+
+    .hero-poster-container {
+        width: 180px;
     }
-    
-    .movie-poster-wrapper img {
-        height: 280px;
+
+    .hero-poster {
+        height: 260px;
     }
-    
-    .movie-info-section h1 {
-        font-size: 1.75rem;
+
+    .hero-movie-info {
+        padding-top: 0;
     }
-    
-    .movie-actions {
+
+    .rating-box {
         justify-content: center;
     }
-    
+
+    .hero-meta {
+        justify-content: center;
+    }
+
     .format-tags {
         justify-content: center;
     }
-    
-    .movie-meta {
+
+    .share-btn {
+        top: var(--space-2);
+        right: var(--space-2);
+        padding: var(--space-1) var(--space-2);
+        font-size: var(--text-xs);
+    }
+
+    .movie-header {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .date-filter-section {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .date-filter-content {
         justify-content: center;
     }
-    
-    .date-selector {
-        justify-content: flex-start;
+
+    .date-tabs {
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+        -webkit-overflow-scrolling: touch;
     }
-    
+
+    .legend-bar {
+        flex-direction: column;
+        gap: var(--space-2);
+        text-align: center;
+    }
+
+    .theaters-section {
+        padding: var(--space-3) var(--space-4);
+    }
+
     .theater-row {
-        padding: 1rem;
+        padding: var(--space-3);
+    }
+
+    .showtimes-grid {
+        gap: var(--space-2);
+    }
+
+    .showtime-btn {
+        min-width: 75px;
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .showtime-btn .time {
+        font-size: var(--text-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-poster-container {
+        width: 150px;
+    }
+
+    .hero-poster {
+        height: 220px;
+    }
+
+    .hero-title {
+        font-size: var(--text-xl);
+    }
+
+    .date-tab {
+        min-width: 48px;
+        padding: var(--space-2);
+    }
+
+    .date-tab .day-date {
+        font-size: var(--text-base);
+    }
+
+    .movie-title-main {
+        font-size: var(--text-lg);
+    }
+
+    .showtime-btn {
+        min-width: 65px;
+        padding: var(--space-1) var(--space-2);
+    }
+
+    .theater-name-info h3 {
+        font-size: var(--text-xs);
     }
 }

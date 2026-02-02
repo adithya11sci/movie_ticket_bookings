@@ -295,7 +295,7 @@ const seedDatabase = async () => {
         }
 
         console.log(`Showtimes to insert: ${showtimes.length}`);
-        
+
         if (showtimes.length > 0) {
             const insertedShowtimes = await ShowTime.insertMany(showtimes);
             console.log(`Added ${insertedShowtimes.length} showtimes`);
@@ -306,22 +306,33 @@ const seedDatabase = async () => {
         // Create admin user if not exists
         const adminExists = await User.findOne({ email: 'admin@moviebook.com' });
         if (!adminExists) {
-            const bcrypt = require('bcryptjs');
-            const hashedPassword = await bcrypt.hash('admin123', 10);
+            // Note: password will be hashed by the pre-save hook in User model
             await User.create({
                 name: 'Admin User',
                 email: 'admin@moviebook.com',
-                password: hashedPassword,
+                password: 'admin123',
                 role: 'admin'
             });
             console.log('Created admin user: admin@moviebook.com / admin123');
+        }
+
+        // Create a test user if not exists
+        const testUserExists = await User.findOne({ email: 'test@test.com' });
+        if (!testUserExists) {
+            await User.create({
+                name: 'Test User',
+                email: 'test@test.com',
+                password: 'test123',
+                role: 'user'
+            });
+            console.log('Created test user: test@test.com / test123');
         }
 
         console.log('\n✅ Database seeded successfully!');
         console.log('\n📝 Admin Login:');
         console.log('   Email: admin@moviebook.com');
         console.log('   Password: admin123');
-        
+
         process.exit(0);
     } catch (error) {
         console.error('Error seeding database:', error);

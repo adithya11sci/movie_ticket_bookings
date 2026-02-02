@@ -2,14 +2,26 @@ import { FaInfoCircle } from 'react-icons/fa';
 import './SeatSelector.css';
 
 const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSelect, prices, userBookedSeats = [], lockedSeats = [] }) => {
-
-    // Filter out user's own booked seats from the general bookedSeats list
-    // This ensures user's seats show as orange, not gray
-    const othersBookedSeats = bookedSeats.filter(seat => !userBookedSeats.includes(seat));
-
+    
+    // Simulate some booked seats for demo if none are provided
+    const demoBookedSeats = [
+        'K7', 'K8', 'K9', 'K10',  // Some center seats in K row
+        'J6', 'J7', 'J8',         // Some in J row
+        'L5', 'L6',               // Some in L row
+        'H9', 'H10', 'H11',       // Some in H row
+        'F3', 'F4', 'F5',         // Some in F row
+        'D8', 'D9',               // Some in D row
+        'B10', 'B11', 'B12',      // Some in B row
+        'N5', 'N6',               // VIP seats
+        'M3', 'M4'                // More VIP
+    ];
+    
+    // Use actual booked seats if available, otherwise use demo
+    const actualBookedSeats = bookedSeats.length > 0 ? bookedSeats : demoBookedSeats;
+    
     // Define seat sections - BookMyShow style
     const sections = [
-        {
+        { 
             id: 'recliner',
             name: 'Rs. 480 RECLINER',
             price: prices?.vip || 480,
@@ -18,7 +30,7 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                 { label: 'M', seats: 12 }
             ]
         },
-        {
+        { 
             id: 'prime',
             name: 'Rs. 280 PRIME',
             price: prices?.premium || 280,
@@ -31,7 +43,7 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                 { label: 'G', seats: 16 }
             ]
         },
-        {
+        { 
             id: 'classic',
             name: 'Rs. 180 CLASSIC',
             price: prices?.regular || 180,
@@ -47,11 +59,9 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     ];
 
     const handleSeatClick = (seatId) => {
-        // Can't click on any booked seats (user's or others') or locked seats
-        if (userBookedSeats.includes(seatId)) return; // User's own booking - can't re-book
-        if (othersBookedSeats.includes(seatId)) return; // Others' booking - sold
-        if (lockedSeats.includes(seatId)) return; // Locked by someone
-
+        // Can't click on sold, user's own booked, or locked seats
+        if (actualBookedSeats.includes(seatId) || userBookedSeats.includes(seatId) || lockedSeats.includes(seatId)) return;
+        
         if (selectedSeats.includes(seatId)) {
             onSeatSelect(selectedSeats.filter(s => s !== seatId));
         } else {
@@ -62,24 +72,22 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
     const isBestseller = (seatId) => {
         const row = seatId[0];
         const num = parseInt(seatId.slice(1));
-        // Center seats in middle rows are bestsellers (only if available)
-        if (othersBookedSeats.includes(seatId) || userBookedSeats.includes(seatId)) return false;
+        // Center seats in middle rows are bestsellers (only if not sold/user-booked)
+        if (actualBookedSeats.includes(seatId) || userBookedSeats.includes(seatId)) return false;
         return ['J', 'K', 'I', 'H'].includes(row) && num >= 6 && num <= 11;
     };
 
     const getSeatStatus = (seatId) => {
-        // Priority order for seat status:
-        // 1. User's own booked seats - ORANGE (highest priority)
+        // User's own booked seats - ORANGE (highest priority)
         if (userBookedSeats.includes(seatId)) return 'user-booked';
-        // 2. Other users' booked seats - GRAY (sold)
-        if (othersBookedSeats.includes(seatId)) return 'sold';
-        // 3. Locked by another user - LIGHT GRAY
+        // Sold/booked by others - GRAY
+        if (actualBookedSeats.includes(seatId)) return 'sold';
+        // Locked by others
         if (lockedSeats.includes(seatId)) return 'locked';
-        // 4. Currently being selected by current user - GREEN filled
+        // Currently selected
         if (selectedSeats.includes(seatId)) return 'selected';
-        // 5. Bestseller seats (popular center seats) - YELLOW border
+        // Bestseller seats
         if (isBestseller(seatId)) return 'bestseller';
-        // 6. Available - GREEN border
         return 'available';
     };
 
@@ -88,7 +96,7 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
         const leftSection = Math.floor(seatCount / 4);
         const centerSection = Math.ceil(seatCount / 2);
         const rightSection = seatCount - leftSection - centerSection;
-
+        
         // Left section
         for (let i = 1; i <= leftSection; i++) {
             const seatId = `${rowLabel}${i}`;
@@ -97,17 +105,17 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                 <div
                     key={seatId}
                     className={`bms-seat ${status}`}
-                    onClick={() => handleSeatClick(seatId)}
+                    onClick={() => status !== 'sold' && handleSeatClick(seatId)}
                     data-seat={i}
                 >
                     {i}
                 </div>
             );
         }
-
+        
         // Left gap
         seats.push(<div key={`${rowLabel}-gap1`} className="bms-seat-gap" />);
-
+        
         // Center section
         for (let i = leftSection + 1; i <= leftSection + centerSection; i++) {
             const seatId = `${rowLabel}${i}`;
@@ -116,17 +124,17 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                 <div
                     key={seatId}
                     className={`bms-seat ${status}`}
-                    onClick={() => handleSeatClick(seatId)}
+                    onClick={() => status !== 'sold' && handleSeatClick(seatId)}
                     data-seat={i}
                 >
                     {i}
                 </div>
             );
         }
-
+        
         // Right gap
         seats.push(<div key={`${rowLabel}-gap2`} className="bms-seat-gap" />);
-
+        
         // Right section
         for (let i = leftSection + centerSection + 1; i <= seatCount; i++) {
             const seatId = `${rowLabel}${i}`;
@@ -135,14 +143,14 @@ const SeatSelector = ({ theater, bookedSeats = [], selectedSeats = [], onSeatSel
                 <div
                     key={seatId}
                     className={`bms-seat ${status}`}
-                    onClick={() => handleSeatClick(seatId)}
+                    onClick={() => status !== 'sold' && handleSeatClick(seatId)}
                     data-seat={i}
                 >
                     {i}
                 </div>
             );
         }
-
+        
         return seats;
     };
 

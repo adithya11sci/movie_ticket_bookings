@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
 import Home from './pages/Home';
@@ -41,17 +42,55 @@ function App() {
                             <Route path="/register" element={<Register />} />
                             <Route path="/movie/:id" element={<MovieDetails />} />
                             <Route path="/movies" element={<Movies />} />
-                            <Route path="/booking/:showtimeId" element={<BookingPage />} />
-                            <Route path="/payment/:bookingId" element={<PaymentPage />} />
-                            <Route path="/my-bookings" element={<MyBookings />} />
-                            
+
+                            {/* Protected User Routes */}
+                            <Route path="/booking/:showtimeId" element={
+                                <ProtectedRoute>
+                                    <BookingPage />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/payment/:bookingId" element={
+                                <ProtectedRoute>
+                                    <PaymentPage />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/my-bookings" element={
+                                <ProtectedRoute>
+                                    <MyBookings />
+                                </ProtectedRoute>
+                            } />
+
                             {/* Admin Routes */}
-                            <Route path="/admin" element={<AdminDashboard />} />
-                            <Route path="/admin/movies" element={<ManageMovies />} />
-                            <Route path="/admin/theaters" element={<ManageTheaters />} />
-                            <Route path="/admin/showtimes" element={<ManageShowtimes />} />
-                            <Route path="/admin/bookings" element={<ManageBookings />} />
-                            <Route path="/admin/users" element={<ManageUsers />} />
+                            <Route path="/admin" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <AdminDashboard />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/movies" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <ManageMovies />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/theaters" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <ManageTheaters />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/showtimes" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <ManageShowtimes />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/bookings" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <ManageBookings />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/users" element={
+                                <ProtectedRoute adminOnly={true}>
+                                    <ManageUsers />
+                                </ProtectedRoute>
+                            } />
                         </Routes>
                     </main>
                     <Footer />

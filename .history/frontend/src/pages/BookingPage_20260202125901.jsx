@@ -11,7 +11,7 @@ const BookingPage = () => {
     const { showtimeId } = useParams();
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-
+    
     const [showtime, setShowtime] = useState(null);
     const [allShowtimes, setAllShowtimes] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -34,12 +34,12 @@ const BookingPage = () => {
         try {
             const res = await API.get(`/showtimes/${showtimeId}`);
             setShowtime(res.data);
-
+            
             // Fetch all showtimes for this movie on same date and theater
             if (res.data.movie?._id) {
                 const allRes = await API.get(`/showtimes/movie/${res.data.movie._id}`);
                 // Filter to same theater and date
-                const filtered = allRes.data.filter(st =>
+                const filtered = allRes.data.filter(st => 
                     st.theater?._id === res.data.theater?._id &&
                     new Date(st.showDate).toDateString() === new Date(res.data.showDate).toDateString()
                 );
@@ -136,8 +136,6 @@ const BookingPage = () => {
     };
 
     const handleShowtimeChange = (newShowtimeId) => {
-        // Clear selected seats when switching showtime (each showtime has separate seats)
-        setSelectedSeats([]);
         navigate(`/booking/${newShowtimeId}`);
     };
 
@@ -150,11 +148,11 @@ const BookingPage = () => {
     }
 
     const showDate = new Date(showtime.showDate);
-    const dateStr = showDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
+    const dateStr = showDate.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        day: '2-digit', 
+        month: 'long', 
+        year: 'numeric' 
     });
 
     return (
