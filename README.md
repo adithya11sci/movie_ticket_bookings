@@ -4,7 +4,7 @@ A professional **BookMyShow-style** movie ticket booking application built with 
 
 ![Movie Booking](https://img.shields.io/badge/MERN-Stack-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Version](https://img.shields.io/badge/Version-1.0.0-orange) ![AI](https://img.shields.io/badge/AI-Powered-purple)
 
-🌐 **Live Demo**: [https://movie-ticket-bookings-93ni.vercel.app](https://movie-ticket-bookings-93ni.vercel.app)
+🌐 **Live Demo**: [https://movie-ticket-bookings-93ni.vercel.app](https://movie-ticket-bookings-mch1.vercel.app/)
 
 ---
 
